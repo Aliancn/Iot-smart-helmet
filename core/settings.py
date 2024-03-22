@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "home",
-
+    "mqtt",
+    
     # Tooling Dynamic_DT
     'django_dyn_dt',             # <-- NEW: Dynamic_DT
 
@@ -190,6 +191,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DYNAMIC_DATATB = {
     # SLUG -> Import_PATH 
     'product'  : "home.models.Product",
+    # TODO when add model 
+    
 }
 ########################################
 
@@ -198,6 +201,7 @@ DYNAMIC_DATATB = {
 API_GENERATOR = {
     # SLUG -> Import_PATH 
     'product'  : "home.models.Product",
+    # TODO when add model
 }
 
 REST_FRAMEWORK = {
@@ -206,4 +210,13 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
+########################################
+
+
+# ### MQTT Settings ###
+MQTT_SERVER = os.getenv('MQTT_SERVER', 'localhost')
+MQTT_PORT = int(os.getenv('MQTT_PORT', 1883))
+MQTT_KEEPALIVE = int(os.getenv('MQTT_KEEPALIVE', 60))
+MQTT_USER = os.getenv('MQTT_USER', '')
+MQTT_PASSWORD = os.getenv('MQTT_PASSWORD', '')
 ########################################

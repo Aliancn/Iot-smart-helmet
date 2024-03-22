@@ -19,3 +19,6 @@ gunicorn==21.2.0
 # psycopg2-binary
 # mysqlclient
 psycopg2==2.9.9
+
+# mqtt
+paho-mqtt==1.6.1
