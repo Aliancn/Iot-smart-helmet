@@ -21,3 +21,27 @@ def tables(request):
     'segment': 'tables'
   }
   return render(request, "pages/dynamic-tables.html", context)
+
+def page_per_mng(request):
+  context = {
+    'segment': 'page_per_mng'
+  }
+  return render(request, "iot-pages/page-per-mng.html", context)
+
+def page_msg_mng(request):
+  context = {
+    'segment': 'page_msg_mng'
+  }
+  return render(request, "iot-pages/page-msg-mng.html", context)
+
+def page_sta_insp(request):
+  context = {
+    'segment': 'page_sta_insp'
+  }
+  return render(request, "iot-pages/page-sta-insp.html", context)
+
+def page_map(request):
+  context = {
+    'segment': 'page_map'
+  }
+  return render(request, "iot-pages/page-map.html", context)

@@ -78,6 +78,36 @@
         {% endif %}
 
         {% if request.user.is_authenticated and not request.user.is_superuser %}
+        {% comment %} 这里是我们写界面的侧边栏 {% endcomment %}
+        <li class="nav-item pcoded-menu-caption">
+          <label>我们的页面</label>
+        </li>
+        <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item {% if 'page_per_mng' in segment %}active{% endif %}">
+          <a href="{% url 'page_per_mng' %}" class="nav-link ">
+            <span class="pcoded-micon"><i class="feather icon-file-text"></i></span>
+            <span class="pcoded-mtext">人员管理页面</span>
+          </a>
+        </li>
+        <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item {% if 'page_sta_insp' in segment %}active{% endif %}">
+          <a href="{% url 'page_sta_insp' %}" class="nav-link ">
+            <span class="pcoded-micon"><i class="feather icon-file-text"></i></span>
+            <span class="pcoded-mtext">状态检测页面</span>
+          </a>
+        </li>
+        <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item {% if 'page_msg_mng' in segment %}active{% endif %}">
+          <a href="{% url 'page_msg_mng' %}" class="nav-link ">
+            <span class="pcoded-micon"><i class="feather icon-file-text"></i></span>
+            <span class="pcoded-mtext">消息管理页面</span>
+          </a>
+        </li>
+        <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item {% if 'page_map' in segment %}active{% endif %}">
+          <a href="{% url 'page_map' %}" class="nav-link ">
+            <span class="pcoded-micon"><i class="feather icon-file-text"></i></span>
+            <span class="pcoded-mtext">地图页面</span>
+          </a>
+        </li>
+
+        {% comment %} UI 元素选择界面 {% endcomment %}
         <li class="nav-item pcoded-menu-caption">
           <label>UI Element</label>
         </li>
