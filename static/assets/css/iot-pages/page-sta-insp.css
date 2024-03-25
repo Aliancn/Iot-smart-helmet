@@ -1,0 +1,52 @@
+.th-msg-first {
+    width: 20%;
+}
+
+
+/* 滚动条宽度 */
+::-webkit-scrollbar {
+    width: 1px;
+    background-color: transparent;
+}
+
+/* 滚动条颜色 */
+::-webkit-scrollbar-thumb {
+    background-color: #386af2;
+}
+
+table {
+    border-collapse: collapse;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+table th,
+table td {
+    height: 50px;
+    text-align: center;
+    border: none;
+}
+
+
+
+table tbody {
+    display: block;
+    width: calc(100% + 2px);
+    /*这里的8px是滚动条的宽度*/
+    height: 300px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table thead tr,
+table tbody tr,
+table tfoot tr {
+    box-sizing: border-box;
+    table-layout: fixed;
+    display: table;
+    width: 100%;
+}
+
+table tbody tr td {
+    border-bottom: none;
+}

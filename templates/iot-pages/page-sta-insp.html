@@ -1,26 +1,104 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
-{% block content %}
+{% block extrastyle %}
+  <!-- morris css -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/chart-morris/css/morris.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/iot-pages/page-sta-insp.css' %}" />
+{% endblock %}
 
+
+{% block content %}
   <!-- [ Main Content ] start -->
   <div class="row">
-    <div class="col-sm-12">
+    <!-- [ donut-chart ] start -->
+    <div class="col-xl-4">
       <div class="card">
         <div class="card-header">
-          <h5>Hello card</h5>
+          <h5>人员数据概览</h5>
         </div>
         <div class="card-block">
-          <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          </p>
+          <div id="morris-donut-chart" style="height:300px"></div>
         </div>
       </div>
     </div>
+    {{ donut|json_script:'donut' }}
+    <script>
+      console.log('donut-inline.js')
+      const mydata = JSON.parse(document.getElementById('donut').textContent)
+    </script>
+    <!-- [ donut-chart ] end -->
+    <!-- [ Hover-table ] start 消息列表 -->
+    <div class="col-xl-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>提示消息</h5>
+        </div>
+        <div class="card-block table-border-style" style="padding: 10px ;">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="th-msg-first">时间</th>
+                  <th class="th-msg-second">内容</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for msg in msgs %}
+                  <tr>
+                    <th scope="row" class="th-msg-first">{{ msg.timestamp }}</th>
+                    <td>{{ msg.describe }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ Hover-table ] end -->
+
+    <!-- [ Hover-table ] start 人员状态 -->
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>人员状态</h5>
+          <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span>
+        </div>
+        <div class="card-block table-border-style">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>姓名</th>
+                  <th>状态</th>
+                  <th>位置</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for worker in workers %}
+                  <tr>
+                    <th scope="row">{{ worker.id }}</th>
+                    <td>{{ worker.name }}</td>
+                    <td>{{ worker.status }}</td>
+                    <td>{{ worker.location }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ Hover-table ] end -->
   </div>
   <!-- [ Main Content ] end -->
+{% endblock %}
 
-{% endblock content %}
+{% block extra_js %}
+  <!-- chart-morris Js -->
+  <script src="{% static 'assets/plugins/chart-morris/js/raphael.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/chart-morris/js/morris.min.js' %}"></script>
+  <script src="{% static 'assets/js/iot-pages/page-sta-insp.js' %}"></script>
+{% endblock %}
