@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="{% static 'assets/css/iot-pages/page-sta-insp.css' %}" />
 {% endblock %}
 
-
 {% block content %}
   <!-- [ Main Content ] start -->
   <div class="row">
@@ -28,6 +27,22 @@
       const mydata = JSON.parse(document.getElementById('donut').textContent)
     </script>
     <!-- [ donut-chart ] end -->
+    <!-- [ line-chart ] start -->
+    <div class="col-xl-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>Line [ Smooth ] Chart</h5>
+        </div>
+        <div class="card-block">
+          <div id="morris-line-smooth-chart" class="ChartShadow" style="height:300px"></div>
+        </div>
+      </div>
+    </div>
+    {{ mydata_line|json_script:'mydata_line' }}
+    <script>
+      console.log('line-inline.js')
+      const mydata_line = JSON.parse(document.getElementById('mydata_line').textContent)
+    </script>
     <!-- [ Hover-table ] start 消息列表 -->
     <div class="col-xl-4">
       <div class="card">
