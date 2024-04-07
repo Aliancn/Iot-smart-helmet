@@ -23,16 +23,19 @@ def tables(request):
   return render(request, "pages/dynamic-tables.html", context)
 
 def page_per_mng(request):
+  workers = Worker.objects.all()
+
   context = {
-    'segment': 'page_per_mng'
+    'segment': 'page_per_mng',
+    'workers': workers
   }
   return render(request, "iot-pages/page-per-mng.html", context)
 
 def page_msg_mng(request):
-  context = {
-    'segment': 'page_msg_mng'
-  }
-  return render(request, "iot-pages/page-msg-mng.html", context)
+    context = {
+        'segment': 'page_msg_mng',
+    }
+    return render(request, "iot-pages/page-msg-mng.html", context)
 
 def page_sta_insp(request):
   

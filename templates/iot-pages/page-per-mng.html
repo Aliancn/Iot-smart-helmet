@@ -1,26 +1,119 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'assets/css/iot-pages/page-per-mng.css' %}" />
+{% endblock %}
+
 {% block content %}
 
   <!-- [ Main Content ] start -->
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card">
-        <div class="card-header">
-          <h5>Hello card</h5>
-        </div>
-        <div class="card-block">
-          <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          </p>
-        </div>
+  <!-- [ Hover-table ] start 人员状态 -->
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h5>人员管理</h5>
+        <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span>
       </div>
+      <div class="card-body">
+        <div class="row">
+          <!-- start 筛选与查询-->
+          <div class="col-md-2">
+            <form>
+              <div class="form-group">
+                <label for="departmentSelect">部门</label>
+                <select class="form-control" id="departmentSelect">
+                  <option>所有</option>
+                  <option value="1">部门1</option>
+                  <option value="2">部门2</option>
+                  <option value="3">部门3</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-2">
+            <form>
+              <div class="form-group">
+                <label for="positionSelect">职位</label>
+                <select class="form-control" id="positionSelect">
+                  <option>所有</option>
+                  <option value="1">职位1</option>
+                  <option value="2">职位2</option>
+                  <option value="3">职位3</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-2">
+            <form>
+              <div class="form-group">
+                <label for="locationSelect">位置</label>
+                <select class="form-control" id="locationSelect">
+                  <option>所有</option>
+                  <option value="A区">A区</option>
+                  <option value="B区">B区</option>
+                  <option value="C区">C区</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-3" style="margin-top: 30px;">
+            <form>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="姓名"
+                  aria-label="姓名" aria-describedby="basic-addon2" id="nameInput">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" id="queryButton" type="button">查询</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- end 筛选与查询-->
+        <!-- [ Hover-table ] start 人员管理 -->
+        <div class= "row">
+          <div class="col-md-12">
+            <table id="workerTable" class="table table-hover">
+              <thead>
+                  <tr>
+                      <th scope="col">#</th> <!-- Add a new table header for the serial number -->
+                      <th scope="col">姓名</th>
+                      <th scope="col">性别</th>
+                      <th scope="col">年龄</th>
+                      <th scope="col">部门</th>
+                      <th scope="col">位置</th>
+                      <th scope="col">电话</th>
+                      <th scope="col">操作</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for worker in workers %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td> <!-- Display the serial number using the forloop.counter variable -->
+                      <td>{{ worker.name }}</td>
+                      <td>{{ worker.gender }}</td>
+                      <td>{{ worker.age }}</td>
+                      <td>{{ worker.department_id }}</td>
+                      <td>{{ worker.location }}</td>
+                      <td>{{ worker.phone }}</td>
+                      <td>
+                          <a href="#" class="btn btn-primary">编辑</a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>          
+          </div>
+        </div>
+        <!-- [ Hover-table ] end -->      
+      </div>  
     </div>
   </div>
   <!-- [ Main Content ] end -->
 
 {% endblock content %}
+
+
+{% block extra_js %}
+  <script src="{% static 'assets/js/iot-pages/page-per-mng.js' %}"></script>
+{% endblock %}
