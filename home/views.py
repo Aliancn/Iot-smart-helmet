@@ -32,8 +32,10 @@ def page_per_mng(request):
   return render(request, "iot-pages/page-per-mng.html", context)
 
 def page_msg_mng(request):
+    workers = Worker.objects.all()
     context = {
         'segment': 'page_msg_mng',
+        'workers': workers
     }
     return render(request, "iot-pages/page-msg-mng.html", context)
 

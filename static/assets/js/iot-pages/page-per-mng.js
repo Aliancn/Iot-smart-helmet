@@ -1,10 +1,5 @@
-var myObj = { name : "菜鸟教程", site : "www.runoob.com" };
-console.log(myObj);
-
 document.getElementById("queryButton").addEventListener("click", function(event) {
-  event.preventDefault(); // 确保 preventDefault() 生效
-  
-  console.log("查询按钮被点击了"); // 添加此行以打印消息
+  event.preventDefault(); 
 
   var department = document.getElementById("departmentSelect").value;
   var position = document.getElementById("positionSelect").value;

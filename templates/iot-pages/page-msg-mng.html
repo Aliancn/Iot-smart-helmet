@@ -5,18 +5,83 @@
 
   <!-- [ Main Content ] start -->
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-xl-6">
       <div class="card">
         <div class="card-header">
-          <h5>Hello card</h5>
+          <h5>选择员工</h5>
         </div>
-        <div class="card-block">
-          <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          </p>
+        <div class="card-body">
+            <!-- start 筛选与查询-->
+            <div class="row"> 
+              <div class="col-xl-3">
+                <form>
+                  <div class="form-group">
+                    <label for="departmentSelect" style="text-align: left;">部门</label>
+                    <select class="form-control" id="departmentSelect">
+                      <option>所有</option>
+                      <option value="1">部门1</option>
+                      <option value="2">部门2</option>
+                      <option value="3">部门3</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              <div class="col-xl-3">
+                <form>
+                  <div class="form-group">
+                    <label for="locationSelect">位置</label>
+                    <select class="form-control" id="locationSelect">
+                      <option>所有</option>
+                      <option value="A区">A区</option>
+                      <option value="B区">B区</option>
+                      <option value="C区">C区</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              <div class="col-xl-4" style="margin-top: 30px;">
+                <form>
+                  <div class="input-group xl-4">
+                    <input type="text" class="form-control" placeholder="姓名"
+                      aria-label="姓名" aria-describedby="basic-addon2" id="nameInput">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" id="queryButton" type="button">查询</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        <!-- end 筛选与查询-->  
+         <!-- [ Hover-table ] start 人员管理 -->
+         <form id="workerForm">
+          <div class="row">
+            <div class="col-md-12">
+              <table id="workerTable" class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">部门</th>
+                    <th scope="col">位置</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for worker in workers %}
+                  <tr>
+                    <td><input type="checkbox" name="workerId" value="{{ worker.id }}"></td>
+                    <td>{{ worker.id }}</td>
+                    <td>{{ worker.name }}</td>
+                    <td>{{ worker.department_id }}</td>
+                    <td>{{ worker.location }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </form>
+        <!-- [ Hover-table ] end -->       
         </div>
       </div>
     </div>
@@ -24,3 +89,7 @@
   <!-- [ Main Content ] end -->
 
 {% endblock content %}
+
+{% block extra_js %}
+  <script src="{% static 'assets/js/iot-pages/page-msg-mng.js' %}"></script>
+{% endblock extra_js %}
