@@ -26,15 +26,19 @@ def tables(request):
 
 
 def page_per_mng(request):
-    context = {
-        'segment': 'page_per_mng'
-    }
-    return render(request, "iot-pages/page-per-mng.html", context)
+  workers = Worker.objects.all()
 
+  context = {
+    'segment': 'page_per_mng',
+    'workers': workers
+  }
+  return render(request, "iot-pages/page-per-mng.html", context)
 
 def page_msg_mng(request):
+    workers = Worker.objects.all()
     context = {
-        'segment': 'page_msg_mng'
+        'segment': 'page_msg_mng',
+        'workers': workers
     }
     return render(request, "iot-pages/page-msg-mng.html", context)
 
