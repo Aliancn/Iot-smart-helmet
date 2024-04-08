@@ -13,9 +13,9 @@
     <!-- [ donut-chart ] start -->
     <div class="col-xl-4">
       <div class="card">
-        <div class="card-header">
+        {% comment %} <div class="card-header">
           <h5>人员数据概览</h5>
-        </div>
+        </div> {% endcomment %}
         <div class="card-block">
           <div id="morris-donut-chart" style="height:300px"></div>
         </div>
@@ -44,7 +44,7 @@
       const mydata_line = JSON.parse(document.getElementById('mydata_line').textContent)
     </script>
     <!-- [ Hover-table ] start 消息列表 -->
-    <div class="col-xl-4">
+    <div class="col-xl-8">
       <div class="card">
         <div class="card-header">
           <h5>提示消息</h5>
@@ -63,41 +63,6 @@
                   <tr>
                     <th scope="row" class="th-msg-first">{{ msg.timestamp }}</th>
                     <td>{{ msg.describe }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- [ Hover-table ] end -->
-
-    <!-- [ Hover-table ] start 人员状态 -->
-    <div class="col-xl-12">
-      <div class="card">
-        <div class="card-header">
-          <h5>人员状态</h5>
-          <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span>
-        </div>
-        <div class="card-block table-border-style">
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>姓名</th>
-                  <th>状态</th>
-                  <th>位置</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for worker in workers %}
-                  <tr>
-                    <th scope="row">{{ worker.id }}</th>
-                    <td>{{ worker.name }}</td>
-                    <td>{{ worker.status }}</td>
-                    <td>{{ worker.location }}</td>
                   </tr>
                 {% endfor %}
               </tbody>

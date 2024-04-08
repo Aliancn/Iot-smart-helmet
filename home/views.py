@@ -95,3 +95,24 @@ def page_map(request):
         'segment': 'page_map'
     }
     return render(request, "iot-pages/page-map.html", context)
+
+
+def person_status(request):
+    class Status():
+        ACTIVE = '在岗'
+        INACTIVE = '休息'
+        PENDING = '请假'
+        OTHER = '其他'
+    context = {
+        'segment': 'person_status',
+        'workers': [
+            {'id': 12321, 'name': 'John Doe', 'status': Status.ACTIVE,
+                'location': 'A区', 'safe': True, 'temperature': '36.5', 'helmet': True},
+            {'id': 12453, 'name': 'Jane Doe', 'status': Status.INACTIVE,
+                'location': '\\', 'safe': True, 'temperature': '36.5', 'helmet': True},
+            {'id': 12754, 'name': 'John Smith', 'status': Status.PENDING,
+                'location': '\\', 'safe': True, 'temperature': '36.5', 'helmet': True},
+
+        ],
+    }
+    return render(request, "iot-pages/page-per-statu.html", context)
