@@ -12,6 +12,7 @@
       <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
     </div>
     <div class="navbar-content scroll-div">
+
       <ul class="nav pcoded-inner-navbar">
         <li class="nav-item pcoded-menu-caption">
           <label>Navigation</label>
@@ -24,7 +25,7 @@
           {% endif %}
             <span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span>
           </a>
-        </li>
+        
         <li class="nav-item {% if 'tables' in segment %}active{% endif %}">
           <a href="{% url 'tables' %}" class="nav-link "><span class="pcoded-micon"><i
                 class="feather icon-server text-c-green"></i></span><span class="pcoded-mtext">Dynamic Tables</span></a>
@@ -91,7 +92,13 @@
         <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item {% if 'page_sta_insp' in segment %}active{% endif %}">
           <a href="{% url 'page_sta_insp' %}" class="nav-link ">
             <span class="pcoded-micon"><i class="feather icon-file-text"></i></span>
-            <span class="pcoded-mtext">状态检测页面</span>
+            <span class="pcoded-mtext">信息概览页面</span>
+          </a>
+        </li>
+        <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item {% if 'person_status' in segment %}active{% endif %}">
+          <a href="{% url 'page_per_stu' %}" class="nav-link ">
+            <span class="pcoded-micon"><i class="feather icon-file-text"></i></span>
+            <span class="pcoded-mtext">人员状态监测</span>
           </a>
         </li>
         <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item {% if 'page_msg_mng' in segment %}active{% endif %}">
@@ -177,6 +184,5 @@
         </li>
         {% endif %}
       </ul>
-    </div>
   </div>
 </nav>
