@@ -2,19 +2,19 @@
 {% load static %}
 
 {% block content %}
-
+<form role="form" id="sendMsgForm" method="post" autocomplete="off" action="/send_msg/">
+  {% csrf_token %}
   <!-- [ Main Content ] start -->
   <div class="row">
     <div class="col-xl-6">
-      <div class="card">
+      <div class="card Recent-Users">
         <div class="card-header">
           <h5>选择员工</h5>
         </div>
         <div class="card-body">
             <!-- start 筛选与查询-->
             <div class="row"> 
-              <div class="col-xl-3">
-                <form>
+              <div class="col-xl-3" style="margin-top: -25px;"> 
                   <div class="form-group">
                     <label for="departmentSelect" style="text-align: left;">部门</label>
                     <select class="form-control" id="departmentSelect">
@@ -24,10 +24,8 @@
                       <option value="3">部门3</option>
                     </select>
                   </div>
-                </form>
               </div>
-              <div class="col-xl-3">
-                <form>
+              <div class="col-xl-3" style="margin-top: -25px;">
                   <div class="form-group">
                     <label for="locationSelect">位置</label>
                     <select class="form-control" id="locationSelect">
@@ -37,10 +35,8 @@
                       <option value="C区">C区</option>
                     </select>
                   </div>
-                </form>
               </div>
-              <div class="col-xl-4" style="margin-top: 30px;">
-                <form>
+              <div class="col-xl-4" style="margin-top: 5px;">
                   <div class="input-group xl-4">
                     <input type="text" class="form-control" placeholder="姓名"
                       aria-label="姓名" aria-describedby="basic-addon2" id="nameInput">
@@ -48,30 +44,28 @@
                       <button class="btn btn-primary" id="queryButton" type="button">查询</button>
                     </div>
                   </div>
-                </form>
               </div>
             </div>
         <!-- end 筛选与查询-->  
          <!-- [ Hover-table ] start 人员管理 -->
-         <form id="workerForm">
           <div class="row">
             <div class="col-md-12">
               <table id="workerTable" class="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">姓名</th>
-                    <th scope="col">部门</th>
-                    <th scope="col">位置</th>
+                    <th scope="col" style="width: 10%">#</th>
+                    <th scope="col" style="width: 20%">姓名</th>
+                    <th scope="col" style="width: 10%">在岗</th>
+                    <th scope="col" style="width: 20%">部门</th>
+                    <th scope="col" style="width: 20%">区域</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for worker in workers %}
                   <tr>
                     <td><input type="checkbox" name="workerId" value="{{ worker.id }}"></td>
-                    <td>{{ worker.id }}</td>
                     <td>{{ worker.name }}</td>
+                    <td><i class="fas fa-circle text-c-green f-10 m-r-15"></i></td>
                     <td>{{ worker.department_id }}</td>
                     <td>{{ worker.location }}</td>
                   </tr>
@@ -80,14 +74,78 @@
               </table>
             </div>
           </div>
-        </form>
         <!-- [ Hover-table ] end -->       
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="card Recent-Users">
+        <div class="card-header">
+          <h5>发送消息</h5>
+          {% comment %} <span id="messageCount">已选择 0 条消息</span> {% endcomment %}
+        </div>
+        <div class="col-sm-12" >
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="box-shadow: none;">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                aria-controls="pills-home" aria-selected="true" style="box-shadow: none;">警告类</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                aria-controls="pills-profile" aria-selected="false" style="box-shadow: none;">消息类</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                aria-controls="pills-contact" aria-selected="false" style="box-shadow: none;">Contact</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent" style="box-shadow: none; margin-top: -45px;">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+              aria-labelledby="pills-home-tab">
+              <p class="mb-0">
+                  <div class="custom-control custom-checkbox" style="margin-top: 5px">
+                    <input type="checkbox" class="custom-control-input" id="customCheck01" name="msgId" value="01">
+                    <label class="custom-control-label" for="customCheck01">有危险，请离开该区域</label>
+                  </div>
+                  <div class="custom-control custom-checkbox" style="margin-top: 5px">
+                    <input type="checkbox" class="custom-control-input" id="customCheck02" name="msgId" value="02">
+                    <label class="custom-control-label" for="customCheck02">请马上佩戴头盔</label>
+                  </div>
+                  <div class="custom-control custom-checkbox" style="margin-top: 5px">
+                    <input type="checkbox" class="custom-control-input" id="customCheck03" name="msgId" value="03">
+                    <label class="custom-control-label" for="customCheck03">小心操作</label>
+                  </div>
+              </p>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <p class="mb-0">
+                  <div class="custom-control custom-checkbox" style="margin-top: 5px">
+                    <input type="checkbox" class="custom-control-input" id="customCheck11" name="msgId" value="11">
+                    <label class="custom-control-label" for="customCheck11">不要偷懒</label>
+                  </div>
+                  <div class="custom-control custom-checkbox" style="margin-top: 5px">
+                    <input type="checkbox" class="custom-control-input" id="customCheck12" name="msgId" value="12"> 
+                    <label class="custom-control-label" for="customCheck12">下班啦</label>
+                  </div>
+                  <div class="custom-control custom-checkbox" style="margin-top: 5px">
+                    <input type="checkbox" class="custom-control-input" id="customCheck13" name="msgId" value="13">
+                    <label class="custom-control-label" for="customCheck13">不要闲聊</label>
+                  </div>
+              </p>
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+              <p class="mb-0">
+
+              </p>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success" id="sendMsgButton" data-toggle="tooltip" style="margin-top: -20px; margin-bottom: 20px; margin-left: 20px;">发送</button>
         </div>
       </div>
     </div>
   </div>
   <!-- [ Main Content ] end -->
-
+</form>
 {% endblock content %}
 
 {% block extra_js %}

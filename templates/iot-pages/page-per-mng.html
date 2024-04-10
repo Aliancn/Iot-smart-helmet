@@ -1,16 +1,12 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
-{% block extrastyle %}
-  <link rel="stylesheet" href="{% static 'assets/css/iot-pages/page-per-mng.css' %}" />
-{% endblock %}
-
 {% block content %}
 
   <!-- [ Main Content ] start -->
   <!-- [ Hover-table ] start 人员状态 -->
   <div class="col-xl-12">
-    <div class="card">
+    <div class="card Recent-Users">
       <div class="card-header">
         <h5>人员管理</h5>
       </div>
@@ -72,36 +68,38 @@
         <!-- [ Hover-table ] start 人员管理 -->
         <div class= "row">
           <div class="col-md-12">
-            <table id="workerTable" class="table table-hover">
-              <thead>
-                  <tr>
-                      <th scope="col">#</th> <!-- Add a new table header for the serial number -->
-                      <th scope="col">姓名</th>
-                      <th scope="col">性别</th>
-                      <th scope="col">年龄</th>
-                      <th scope="col">部门</th>
-                      <th scope="col">位置</th>
-                      <th scope="col">电话</th>
-                      <th scope="col">操作</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {% for worker in workers %}
+            <div class="table-responsive">
+              <table id="workerTable" class="table table-hover">
+                <thead>
                     <tr>
-                      <td>{{ forloop.counter }}</td> <!-- Display the serial number using the forloop.counter variable -->
-                      <td>{{ worker.name }}</td>
-                      <td>{{ worker.gender }}</td>
-                      <td>{{ worker.age }}</td>
-                      <td>{{ worker.department_id }}</td>
-                      <td>{{ worker.location }}</td>
-                      <td>{{ worker.phone }}</td>
-                      <td>
-                          <a href="#" class="btn btn-primary">编辑</a>
-                      </td>
-                  </tr>
-                  {% endfor %}
-              </tbody>
-            </table>          
+                        <th scope="col">#</th> <!-- Add a new table header for the serial number -->
+                        <th scope="col">姓名</th>
+                        <th scope="col">性别</th>
+                        <th scope="col">年龄</th>
+                        <th scope="col">部门</th>
+                        <th scope="col">位置</th>
+                        <th scope="col">电话</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for worker in workers %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td> <!-- Display the serial number using the forloop.counter variable -->
+                        <td>{{ worker.name }}</td>
+                        <td>{{ worker.gender }}</td>
+                        <td>{{ worker.age }}</td>
+                        <td>{{ worker.department_id }}</td>
+                        <td>{{ worker.location }}</td>
+                        <td>{{ worker.phone }}</td>
+                        <td>
+                          <a href="#" class="label theme-bg2 text-white f-12">编辑</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>          
+            </div>
           </div>
         </div>
         <!-- [ Hover-table ] end -->      
