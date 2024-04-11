@@ -120,3 +120,32 @@ def person_status(request):
         ],
     }
     return render(request, "iot-pages/page-per-statu.html", context)
+
+def send_msg(request):
+    workerId = request.POST.getlist('workerId')
+    msgId = request.POST.getlist('msgId')
+
+    for id in workerId:
+        print(id)
+    
+    for id in msgId:
+        print(id)
+
+    workers = Worker.objects.all()
+    context = {
+        'workers': workers
+    }
+    # testmessage 
+    # 警告类
+    # id 内容
+    # 01 有危险，请离开该区域
+    # 02 请马上佩戴头盔
+    # 03 小心操作
+    # 消息类
+    # id 内容
+    # 11 不要偷懒
+    # 12 下班啦
+    # 13 不要闲聊
+
+    # 暂时未做检验人员/消息为空的警告逻辑，以及提交成功的按钮
+    return render(request, "iot-pages/page-msg-mng.html", context)

@@ -11,4 +11,5 @@ urlpatterns = [
     path('page_sta_insp/', views.page_sta_insp, name='page_sta_insp'),
     path('page_map/', views.page_map, name='page_map'),
     path('page_per_stu/', views.person_status, name='page_per_stu'),
+    path('send_msg/', views.send_msg, name='send_msg'),
 ]
