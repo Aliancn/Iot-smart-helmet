@@ -11,11 +11,10 @@ document.getElementById("queryButton").addEventListener("click", function(event)
 
   for (var i = 1; i < rows.length; i++) {
     var worker = rows[i];
-    var workerDepartment = worker.cells[4].innerHTML;
-    var workerPosition = worker.cells[3].innerHTML; //待修改
-    var workerLocation = worker.cells[5].innerHTML;
     var workerName = worker.cells[1].innerHTML;
-
+    var workerDepartment = worker.cells[4].innerHTML;
+    var workerLocation = worker.cells[5].innerHTML;
+    var workerPosition = worker.cells[6].innerHTML; //待修改
     // 显示所有行
     worker.style.display = "";
 

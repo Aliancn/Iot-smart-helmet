@@ -52,7 +52,7 @@
               </div>
             </form>
           </div>
-          <div class="col-xl-2" style="margin-top: 30px;">
+          <div class="col-xl-3" style="margin-top: 30px;">
             <form>
               <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="姓名"
@@ -63,42 +63,52 @@
               </div>
             </form>
           </div>
+          <div class="col-xl-3" style="margin-top: 30px;">
+            <a href="{% url 'add_profile' %}" class="btn btn-primary">添加人员</a>
+          </div>
         </div>
         <!-- end 筛选与查询-->
         <!-- [ Hover-table ] start 人员管理 -->
         <div class= "row">
           <div class="col-md-12">
-            <div class="table-responsive">
-              <table id="workerTable" class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th> <!-- Add a new table header for the serial number -->
-                        <th scope="col">姓名</th>
-                        <th scope="col">性别</th>
-                        <th scope="col">年龄</th>
-                        <th scope="col">部门</th>
-                        <th scope="col">位置</th>
-                        <th scope="col">电话</th>
-                        <th scope="col">操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for worker in workers %}
+            <form>
+              <div class="table-responsive">
+                <table id="workerTable" class="table table-hover" style="table-layout: fixed; width=100%">
+                  <thead>
                       <tr>
-                        <td>{{ forloop.counter }}</td> <!-- Display the serial number using the forloop.counter variable -->
-                        <td>{{ worker.name }}</td>
-                        <td>{{ worker.gender }}</td>
-                        <td>{{ worker.age }}</td>
-                        <td>{{ worker.department_id }}</td>
-                        <td>{{ worker.location }}</td>
-                        <td>{{ worker.phone }}</td>
-                        <td>
-                          <a href="#" class="label theme-bg2 text-white f-12">编辑</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-              </table>          
+                          <th scope="col" style="width: 5%">#</th> <!-- Add a new table header for the serial number -->
+                          <th scope="col" style="width: 10%">姓名</th>
+                          <th scope="col" style="width: 10%">性别</th>
+                          <th scope="col" style="width: 5%">年龄</th>
+                          <th scope="col" style="width: 5%">部门</th>
+                          <th scope="col" style="width: 5%">位置</th>
+                          <th scope="col" style="width: 5%">职位</th>
+                          <th scope="col" style="width: 10%">电话</th>
+                          <th scope="col" style="width: 15%">紧急联系电话</th>
+                          <th scope="col" style="width: 20%">操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for worker in workers %}
+                        <tr>
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">{{ forloop.counter }}</td> <!-- Display the serial number using the forloop.counter variable -->
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">{{ worker.name }}</td>
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">{{ worker.gender }}</td>
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">{{ worker.age }}</td>
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">{{ worker.department_id }}</td>
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">{{ worker.location }}</td>
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">{{ worker.position_id }}</td>
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">{{ worker.phone }}</td>
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">{{ worker.emergency_contact }}</td>
+                          <td style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">
+                            <a href="/profile/{{ worker.id }}/edit" class="label theme-bg2 text-white f-12">编辑</a>
+                            <a href="{% url 'delete_profile' worker.id %}" class="label theme-bg text-white f-12">删除</a>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>   
+              </form>       
             </div>
           </div>
         </div>

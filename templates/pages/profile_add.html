@@ -10,53 +10,53 @@
     <div class="col-sm-8">
       <div class="card">
         <div class="card-header">
-          <h5>编辑员工信息</h5>
+          <h5>添加员工</h5>
         </div>
-        <form id="editWorkerForm" action="{% url 'save_profile' worker.id %}" method="post">
+        <form id="editWorkerForm" action="{% url 'add_save_profile' %}" method="post">
           {% csrf_token %}
-          <input type="hidden" name="worker_id" value="{{ worker.id }}">
+          <input type="hidden" name="worker_id">
           <div class="card-block">
             <div class="row">
               <div class="col-sm-6 mb-4">
                 <div class="form-group">
                   <label for="fn">姓名</label>
                   <input type="text" class="form-control" id="name" name="name"
-                    placeholder="输入姓名" value="{{ worker.name }}">
+                    placeholder="输入姓名">
                 </div>
               </div>
               <div class="col-sm-6 mb-4">
                 <div class="form-group">
                   <label for="fn">性别</label>
                   <input type="text" class="form-control" id="gender" name="gender"
-                    placeholder="输入性别" value="{{ worker.gender}}">
+                    placeholder="输入性别">
                 </div>
               </div>
               <div class="col-sm-6 mb-4">
                 <div class="form-group">
                   <label for="fn">年龄</label>
                   <input type="text" class="form-control" id="age" name="age"
-                    placeholder="输入年龄" value="{{ worker.age}}">
+                    placeholder="输入年龄">
                 </div>
               </div>
               <div class="col-sm-6 mb-4">
                 <div class="form-group">
                   <label for="fn">电话</label>
                   <input type="text" class="form-control" id="phone" name="phone"
-                    placeholder="输入电话" value="{{ worker.phone}}">
+                    placeholder="输入电话">
                 </div>
               </div>
               <div class="col-sm-6 mb-4">
                 <div class="form-group">
                   <label for="fn">紧急联系电话</label>
                   <input type="text" class="form-control" id="emergency_contact" name="emergency_contact"
-                    placeholder="输入紧急联系电话" value="{{ worker.emergency_contact}}">
+                    placeholder="输入紧急联系电话">
                 </div>
               </div>
               <div class="col-sm-6 mb-4">
                 <div class="form-group">
                   <label for="departmentSelect">部门</label>
                   <select class="form-control" id="departmentSelect" name="department">
-                      <option {% if worker.department_id is None %}selected{% endif %}>选择部门</option>
+                      <option>选择部门</option>
                       <option value="1" {% if worker.department_id == 1 %}selected{% endif %}>部门1</option>
                       <option value="2" {% if worker.department_id == 2 %}selected{% endif %}>部门2</option>
                       <option value="3" {% if worker.department_id == 3 %}selected{% endif %}>部门3</option>
@@ -67,10 +67,10 @@
                 <div class="form-group">
                   <label for="positionSelect">职位</label>
                   <select class="form-control" id="positionSelect" name="position">
-                      <option {% if worker.position_id is None %}selected{% endif %}>选择职位</option>
-                      <option value="1" {% if worker.position_id == 1 %}selected{% endif %}>职位1</option>
-                      <option value="2" {% if worker.position_id == 2 %}selected{% endif %}>职位2</option>
-                      <option value="3" {% if worker.position_id == 3 %}selected{% endif %}>职位3</option>
+                      <option>选择职位</option>
+                      <option value="1">职位1</option>
+                      <option value="2">职位2</option>
+                      <option value="3">职位3</option>
                   </select>
                 </div>
               </div>
@@ -78,10 +78,10 @@
                 <div class="form-group">
                   <label for="locationSelect">位置</label>
                   <select class="form-control" id="locationSelect" name="location">
-                      <option {% if worker.location is None %}selected{% endif %}>选择区域</option>
-                      <option value="A区" {% if worker.location == "A区" %}selected{% endif %}>A区</option>
-                      <option value="B区" {% if worker.location == "B区" %}selected{% endif %}>B区</option>
-                      <option value="C区" {% if worker.location == "C区" %}selected{% endif %}>C区</option>
+                      <option>选择区域</option>
+                      <option value="A区">A区</option>
+                      <option value="B区">B区</option>
+                      <option value="C区">C区</option>
                   </select>
                 </div>    
               </div>
@@ -89,19 +89,18 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">邮件</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" name="email"
-                    aria-describedby="emailHelp" placeholder="输入邮件" value="{{ worker.email}}">
+                    aria-describedby="emailHelp" placeholder="输入邮件">
                 </div>
               </div>
               <div class="col-sm-12 mb-4">
                 <div class="form-group">
                   <label for="add">地址</label>
                   <input type="text" class="form-control" id="add" name="address"
-                    placeholder="输入地址" value="{{ worker.address}}">
+                    placeholder="输入地址">
                 </div>
               </div>
               <div class="col-sm-12 mb-4">
-                <button type="submit" class="btn btn-primary" id="saveButton">保存</button>
-                <a href="{% url 'delete_profile' worker.id %}" class="btn btn-danger" id="deleteButton">删除</a>
+                <button type="submit" class="btn btn-primary" id="saveButton">添加</button>
               </div>
             </div>
           </div>
