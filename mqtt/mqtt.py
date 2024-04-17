@@ -2,6 +2,8 @@ import json
 import paho.mqtt.client as mqtt
 from django.conf import settings
 
+from mqtt.messageSolve import solveMessage
+
 topic = [("django/helmet/test1", 1), ("django/helmet/test2", 1)]
 
 
@@ -29,7 +31,8 @@ def on_message(mqtt_client, userdata, msg):
     # 按照topic的不同，执行不同的函数
     switch = {
         "topic1": func1,
-        "topic2": func2
+        "topic2": func2,
+        "test/1": solveMessage  # 测试时用于处理数据
     }
     switch[msg.topic](payload_json)
 
