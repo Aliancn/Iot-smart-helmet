@@ -298,3 +298,6 @@ def create_workers(request):
         
     return redirect('page-per-mng')
 
+
+def test(request):
+    return render(request, 'iot-pages/test.html')

@@ -14,8 +14,10 @@ def on_connect(mqtt_client, userdata, flags, rc):
     else:
         print('Bad connection. Code:', rc)
 
+
 def func1(payload):
     print('Function 1')
+
 
 def func2(payload):
     print('Function 2')
@@ -32,9 +34,10 @@ def on_message(mqtt_client, userdata, msg):
     switch = {
         "topic1": func1,
         "topic2": func2,
-        "test/1": solveMessage  # 测试时用于处理数据
+        "django/helmet/test1": solveMessage  # 测试时用于处理数据
     }
     switch[msg.topic](payload_json)
+
 
 client = mqtt.Client()
 client.on_connect = on_connect

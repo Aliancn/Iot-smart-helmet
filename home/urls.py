@@ -18,4 +18,5 @@ urlpatterns = [
     path('profile/add/', views.add_profile, name='add_profile'),
     path('profile/add_save/', views.add_save_profile, name='add_save_profile'),
     path('create-workers/', views.create_workers, name='create_workers'),  
+    path('test/', views.test , name='test'),
 ]
